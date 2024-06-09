@@ -5,15 +5,15 @@ function Card({temp, weather, feelsLikeTempint,formattedDateTime}) {
 
   return (
   
-<div className="w-full max-w-screen-md bg-white dark:bg-slate-900 dark:text-white p-10 rounded-xl ring-8 ring-white ring-opacity-40">
+<div className="containertiner w-full max-w-screen-md  bg-white dark:bg-slate-900 dark:text-white p-4 lg:p-10 rounded-xl ring-8 ring-white ring-opacity-40">
             
-              <div className="flex justify-between gap-36">
+              <div className="flex justify-between gap-12 lg:gap-36">
             
                 <div className="flex flex-col gap-4">
-                  <span className="text-6xl font-bold">
+                  <span className="text-2xl lg:text-lg font-bold">
                     {temp}°C
                   </span>
-                  <span className="font-semibold mt-1 text-lg">
+                  <span className="font-semibold mt-1 text-sm lg:text-lg">
                     Feels Like:{feelsLikeTempint}°C
                   </span>
                   <span className="font-semibold mt-1 text-gray-500 dark:text-gray-300">
@@ -21,9 +21,9 @@ function Card({temp, weather, feelsLikeTempint,formattedDateTime}) {
                   </span>
                 </div>
               <div className="">
-                <p className='mb-4 text-md font-semibold'>{formattedDateTime}</p>
+                <p className='mb-4 text-sm lg:text-md font-semibold'>{formattedDateTime}</p>
                 <svg
-                  className="h-24 w-24 fill-current text-yellow-400"
+                  className="h-16 w-16 lg:h-24 lg:w-24 fill-current text-yellow-400"
                   xmlns="http://www.w3.org/2000/svg"
                   height="24"
                   viewBox="0 0 24 24"

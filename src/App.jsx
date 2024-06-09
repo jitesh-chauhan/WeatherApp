@@ -114,12 +114,12 @@ function App() {
       
 
        
-<div className=" flex flex-col items-center  w-screen min-h-screen text-gray-700 bg-gradient-to-br from-pink-200 via-purple-200 to-indigo-200 dark:from-pink-600 dark:via-purple-600 dark:to-indigo-600 ">
+<div className=" flex flex-col items-center  w-screen min-h-screen  text-gray-700 bg-gradient-to-br from-pink-200 via-purple-200 to-indigo-200 dark:from-pink-600 dark:via-purple-600 dark:to-indigo-600 ">
     <div className="">
 
        <Dark />
     </div>
-    <div className="conatiner m-12 lg:mt-40 w-auto lg:w-full  gap-20 h-full flex flex-col  justify-around">
+    <div className="conatiner mt-7  lg:mt-40 w-auto mx-2 lg:w-full  gap-20 h-full flex flex-col  justify-around">
 
 
         <div className="flex flex-col lg:flex-row gap-10  justify-center lg:order-1" >
