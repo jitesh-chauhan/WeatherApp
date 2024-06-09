@@ -119,7 +119,7 @@ function App() {
 
        <Dark />
     </div>
-    <div className="conatiner mt-7  lg:mt-40 w-auto  lg:w-full gap-6 lg:gap-20 h-full flex flex-col  justify-around">
+    <div className="conatiner mt-7  lg:mt-40 w-auto  lg:w-full gap-10 lg:gap-20 h-full flex flex-col  justify-around">
 
 
         <div className="flex flex-col lg:flex-row gap-10  justify-center lg:order-1" >
@@ -132,7 +132,7 @@ function App() {
 
 
 
-        <div className=" lg:mt-10 flex justify-end lg:mr-72 lg:order-2" >
+        <div className=" lg:mt-10 flex justify-center  lg:order-2" >
           
         <Search setSearch={setSearch} searchBtn={searchBtn} errormsg={error}/>
               
