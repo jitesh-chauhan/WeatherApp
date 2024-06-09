@@ -1,20 +1,20 @@
 
 
 
-function Card({temp, weather, feelsLikeTempint,formattedDateTime}) {
+function Card({temp,text, weather, feelsLikeTempint,formattedDateTime}) {
 
   return (
   
-<div className="containertiner w-full max-w-screen-md  bg-white dark:bg-slate-900 dark:text-white p-4 lg:p-10 rounded-xl ring-8 ring-white ring-opacity-40">
-            
+<div className="containertiner w-full max-w-screen-md  bg-white dark:bg-slate-900 dark:text-white px-4 py-2 lg:p-10 rounded-xl ring-8 ring-white ring-opacity-40">
+            <h1 className="font-extralight mb-2">{text}</h1>
               <div className="flex justify-between gap-12 lg:gap-36">
             
                 <div className="flex flex-col gap-4">
-                  <span className="text-2xl lg:text-lg font-bold">
-                    {temp}°C
+                  <span className="text-2xl lg:text-6xl font-bold">
+                    {temp ?temp: 0}°C
                   </span>
                   <span className="font-semibold mt-1 text-sm lg:text-lg">
-                    Feels Like:{feelsLikeTempint}°C
+                    Feels Like:{feelsLikeTempint ? feelsLikeTempint : 0}°C
                   </span>
                   <span className="font-semibold mt-1 text-gray-500 dark:text-gray-300">
                     {weather.name }, {weather.sys && weather.sys.country}
