@@ -12,9 +12,11 @@ function App() {
   };
 
   const [weather, setWeather] = useState({});
+  // const [weather2, setWeather2] = useState({})
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
 
   useEffect(() => {
+    // Update current date and time every second
     const intervalId = setInterval(() => {
       setCurrentDateTime(new Date());
     }, 1000);
@@ -25,7 +27,7 @@ function App() {
   const formattedDateTime = currentDateTime.toLocaleString();
 
 
-  // search functionality
+  // search functionality and error handeling
 
   const [search, setSearch] = useState("")
   const [error, setError] = useState(null)
@@ -40,21 +42,21 @@ function App() {
   {
     seTemperatureInteger(tempint);
     setFeelsLikeTempint(feelsLike);
-
   })
 
   
- 
+
   const searchBtn =  useCallback(()=>{
     if (search.trim() === '') {
       setError('Please enter a city name');
-      return;
+      return null;
     }
+    
+    //api fetching and error handeling
     fetch(` ${api.base}weather?q=${search}&units=metric&APPID=${api.key} `)
     .then((res) => {
       if(!res.ok){
-        
-       setError('City not found!')
+      setError('City not found!')
       }
       else{
         setError(null)
@@ -63,46 +65,38 @@ function App() {
     })
     .then((results) => {
       setWeather(results)
-     
-     
-    })
+     })
     .catch((error)=>{
-      setError('Connection failed!.. Try again')
+      setError('Connection failed!.. Try again', error)
     })
-  
-  
-
   })
 
 
 
 
+  // Fetch user's location weather data
 
   const [Usertemperature, setUserTemperature] = useState(0);
   const [UserWeather, setUserWeather] = useState({})
   const [UserFeelstemperature, setUserFeelsTemperature] = useState(0);
-
+  const [LocationError, setLocationError] = useState(null)
  
   useEffect(() => {
-    
-    navigator.geolocation.getCurrentPosition(
-      async (position) => {
+        navigator.geolocation.getCurrentPosition(
+        async (position) => {
         const { latitude, longitude } = position.coords;
-       
-        const apiKey = '9d7c4fc60fe5042ce2deafa96271c8fc'; 
+               const apiKey = '9d7c4fc60fe5042ce2deafa96271c8fc'; 
         const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
         const response = await fetch(apiUrl);
         const data = await response.json();
-      
         setUserWeather(data)
-       
         const currentTemperature = data.main.temp;
         setUserTemperature(parseInt(currentTemperature));
         const feelsTemperature = data.main.feels_like;
         setUserFeelsTemperature(parseInt(feelsTemperature));
       },
       (error) => {
-        console.error('Error getting user location:', error);
+      setLocationError('Error getting user location', error);
       }
     );
   }, []);
@@ -119,14 +113,16 @@ function App() {
 
        <Dark />
     </div>
-    <div className="conatiner mt-7  lg:mt-40 w-auto  lg:w-full gap-10 lg:gap-20 h-full flex flex-col  justify-around">
+
+    
+    <div className="conatiner mt-7  lg:mt-28 w-auto  lg:w-full gap-10 lg:gap-20 h-full flex flex-col  justify-around">
 
 
         <div className="flex flex-col lg:flex-row gap-10  justify-center lg:order-1" >
            
 
              <Card temp={temperatureInteger} feelsLikeTempint={feelsLikeTempint}  weather={weather} formattedDateTime={formattedDateTime} />
-             <Card temp={Usertemperature} feelsLikeTempint={UserFeelstemperature}  weather={UserWeather} formattedDateTime={formattedDateTime} text="Your Location" />
+             <Card temp={Usertemperature} feelsLikeTempint={UserFeelstemperature} LocationError={LocationError}  weather={UserWeather} formattedDateTime={formattedDateTime} text="Your Location" />
         
         </div>
 
